@@ -31,8 +31,8 @@ $(".box-all").fullpage({
 		if(index===3){
 			$(".my-works-inner h2").addClass("text");
 			$(".my-works-inner .inner1").animate({left:0});
-			$(".my-works-inner .inner2").animate({left:480});
-			$(".my-works-inner .inner3").animate({right:480});
+			$(".my-works-inner .inner2").animate({left:425});
+			$(".my-works-inner .inner3").animate({right:425});
 			$(".my-works-inner .inner4").animate({right:0});
 			$(".my-works-inner h2").removeClass("text2");
 		}
