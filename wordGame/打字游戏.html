@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body{
+            width:100%;
+            height:100%;
+            padding:0;
+            margin:0;
+        }
+        .main{
+            width:100%;
+            height:100%;
+            background:url("bg.jpg") no-repeat;
+            background-size:contain;
+            position:relative;
+            overflow:hidden;
+        }
+        .left-box{
+            width:80%;
+            height:100%;
+            float:left;
+        }
+        .right{
+            width:20%;
+            height:100%;
+            float:left;
+            position:relative;
+        }
+        .information{
+            width:100%;
+            height:40px;
+            margin:10px 0 10px;
+        }
+        .top{
+            width:50%;
+            height:19px;
+            color:#fff;
+            text-align:center;
+            line-height:19px;
+            font-size:14px;
+            float:left;
+        }
+        .num{
+            width:50%;;
+            height:20px;
+            color:#000;
+            text-align:center;
+            line-height:20px;
+            font-size:18px;
+            margin-bottom:10px;
+            float:left;
+        }
+        .play {
+            width:100%;
+            height:100px;
+            background:url("play.gif") no-repeat center;
+            color:#fff;
+            text-align:center;
+            line-height:18px;
+            margin:0 auto 10px;
+            border-radius:10px;
+            cursor:pointer;
+            position:absolute;
+            bottom:140px;
+        }
+        .pause{
+            width:100%;
+            height:100px;
+            color:#fff;
+            background:url("pause.png") no-repeat center;
+            background-size:contain;
+            text-align:center;
+            line-height:18px;
+            margin:0 auto;
+            border-radius:10px;
+            cursor:pointer;
+            position:absolute;
+            bottom:250px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .letter{
+            width:60px;
+            height:100px;
+            text-align:center;
+            position:absolute;
+            transition:all .1s;
+            background-size:contain;
+            background-repeat:no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="left-box"></div>
+        <div class="right">
+            <div class="information">
+                <div class="top">得分</div>
+                <div class="num" id="fenshu">0</div>
+            </div>
+            <div class="information">
+                <div class="top">关卡</div>
+                <div class="num" id="guanka">1</div>
+            </div>
+            <div class="information">
+                <div class="top">生命</div>
+                <div class="num" id="shengming">10</div>
+            </div>
+            <div class="play"></div>
+            <div class="pause"></div>
+        </div>
+    </div>
+    <script>
+        class Game {
+            constructor(leftBox, fenshu, guanka, shengming) {
+                this.leftBox = leftBox;
+                this.num = 3;
+                this.obj = {};
+                this.color = ["red", "yellow", "green", "pink", "18FFD6", "FF026C"];
+                this.fenshu = fenshu;
+                this.fenshuNum = 0;
+                this.guanka = guanka;
+                this.guankaNum = 1;
+                this.speed = 5;
+                this.shengming = shengming;
+                this.shengmingNum = 10;
+                this.height = window.innerHeight;
+            }
+
+            start() {
+                for (var i = 0; i < this.num; i++) {
+                    this._createLetter();
+                }
+                this._move();
+                this._keydown();
+            }
+
+            _createLetter() {
+                var newdiv = document.createElement("div");
+                newdiv.className = "letter";
+//          取随机字母值
+                do {
+                    var randomNum = Math.floor(Math.random() * 26 + 65);
+                    var randomColor = Math.floor(Math.random() * 5);
+                    var randomLetter = String.fromCharCode(randomNum);
+                } while (this.obj[randomLetter])
+                newdiv.style.color = this.color[randomColor];
+                newdiv.style.backgroundImage=`url(${randomLetter}.png)`
+
+//          取随机left的值
+                do {
+                    var randomLeft = Math.random() * 1000;
+                } while (this._checkLeft(randomLeft))
+                newdiv.style.left = randomLeft + "px";
+
+                this.obj[randomLetter] = {left: randomLeft, ele: newdiv}
+
+//         取随机top值
+                var randomTop = -Math.random() * 100;
+                newdiv.style.top = randomTop + "px";
+
+                this.leftBox.appendChild(newdiv);
+            };
+
+            _checkLeft(randomLeft) {
+                for (var i in this.obj) {
+                    if (randomLeft > this.obj[i].left - 70 && randomLeft < this.obj[i].left + 70) {
+                        return true;
+                    }
+                }
+            };
+
+            _move() {
+                this.st = setInterval(function () {
+                    for (var i in this.obj) {
+                        var top = this.obj[i].ele.offsetTop;
+                        top += this.speed;
+                        this.obj[i].ele.style.top = top + "px";
+                        if (top > this.height) {
+                            this.shengmingNum--;
+                            this.shengming.innerHTML = this.shengmingNum;
+                            this.leftBox.removeChild(this.obj[i].ele);
+                            delete this.obj[i];
+                            this._createLetter();
+                            if(this.shengmingNum===0){
+                                this._gameover();
+                            }
+                        }
+                    }
+                }.bind(this), 50)
+            };
+
+            _keydown() {
+                this._keydownHandlet=function(e){
+                    var kc = e.keyCode;
+                    var letter = String.fromCharCode(kc);
+                    if (this.obj[letter]) {
+                        this.leftBox.removeChild(this.obj[letter].ele);
+                        delete this.obj[letter];
+                        this._createLetter();
+                        this.fenshuNum++;
+                        this.fenshu.innerHTML = this.fenshuNum;
+                        if (this.fenshuNum % 10 === 0) {
+                            this._guanka();
+                        }
+                    }
+                }.bind(this);
+                document.addEventListener("keydown",this._keydownHandlet);
+            }
+
+            _guanka() {
+                this.guankaNum++;
+                this.guanka.innerHTML = this.guankaNum;
+                if (this.guankaNum < 7) {
+                    this._createLetter();
+                    this.speed++;
+                }else if(this.guankaNum >= 7){
+                    this.speed++;
+                }
+            }
+            _gameover() {
+                alert("游戏结束");
+                clearInterval(this.st);
+                flag=true;
+                start.style.filter="grayscale(0)";
+                document.removeEventListener("keydown",this._keydownHandlet);
+                this.num = 3;
+                this.fenshu.innerHTML= 0;
+                this.fenshuNum = 0;
+                this.guanka.innerHTML = 1;
+                this.guankaNum = 1;
+                this.shengming.innerHTML = 10;
+                this.shengmingNum = 10;
+                this.speed = 5;
+                this.leftBox.innerHTML="";
+                this.obj = {};
+            }
+            _pause(){
+                clearInterval(this.st);
+                document.removeEventListener("keydown",this._keydownHandlet);
+            }
+            _run(){
+                this._move();
+                this._keydown();
+            }
+        }
+        var start = document.querySelector(".play");
+        var pause = document.querySelector(".pause");
+        var leftBox = document.querySelector(".left-box");
+        var fenshu = document.querySelector("#fenshu");
+        var guanka = document.querySelector("#guanka");
+        var shengming = document.querySelector("#shengming")
+        var game = new Game(leftBox,fenshu,guanka,shengming);
+        var flag = true;
+        start.onclick=function(){
+            if(flag){
+                flag = false;
+                start.style.filter="grayscale(100%)";
+                game.start();
+            }
+        }
+        var flag1 = true;
+        pause.onclick=function(){
+            if(flag1){
+                game._pause();
+                pause.style.filter="grayscale(100)";
+                flag1 = false;
+            }else{
+                game._run();
+                pause.style.filter="grayscale(0)";
+                flag1 = true;
+            }
+        }
+    </script>
+</body>
+</html>
