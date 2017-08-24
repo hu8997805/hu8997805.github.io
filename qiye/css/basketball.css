@@ -1,0 +1,371 @@
+html,body{
+	width:100%;
+	height:100%;
+	padding:0;
+	margin:0;
+	font-size:14px;
+	font-family:"Microsoft Yahei";
+}
+ul,p,a,h1,h2,h3,h4,h5,h6,img{
+	list-style:none;
+	text-decoration:none;
+	padding:0;
+	margin:0;
+	border:0;
+}
+/*头部开始*/
+.header{
+	width:100%;
+	height:146px;
+	background:url(../images/head.jpg) center no-repeat;
+}
+.header .top{
+	width:1200px;
+	height:40px;
+	margin:0 auto;
+	line-height:40px;
+	color:#fff;
+}
+.header .top .left{
+	float:left;
+}
+.header .top .phone{
+	float:right;
+}
+.nav{
+	width:1200px;
+	height:106px;
+	margin:0 auto;
+}
+.nav .logo{
+	margin-top:30px;
+	margin-left:40px;
+	float:left;
+}
+.nav .logo a{
+	display:block;
+	width:203px;
+	height:48px;
+}
+.nav .nav-menu{
+	height:106px;
+	float:left;
+}
+.nav .nav-menu li{
+	width:106px;
+	height:106px;
+	line-height:106px;
+	text-align:center;
+	float:left;
+	position:relative;
+	cursor:pointer;
+}
+.nav .nav-menu li .nav-text{
+	color:#fff;
+	font-size:16px;
+}
+.nav .nav-menu li .nav-list{
+	border-top:2px solid #c40000;
+	background:#060605;
+	position:absolute;
+	top:100%;
+	left:0;
+	display:none;
+	z-index:10;
+}
+.nav .nav-menu li .nav-list li{
+	width:106px;
+	height:50px;
+	line-height:50px;
+	text-align:center;
+	cursor:pointer;
+}
+.nav .nav-menu li .nav-list li a{
+	font-size:16px;
+	color:#fff;
+}
+.banner .inner{
+	width:100%;
+	height:812px;
+	position:relative;
+}
+.banner .inner a{
+	display:block;
+	width:100%;
+	height:100%;
+}
+.banner .inner .img{
+	width:100%;
+	height:100%;
+	position:absolute;
+}
+.banner .inner .img img{
+	width:100%;
+	height:100%;
+	vertical-align:bottom;
+}
+.banner .inner .spot{
+	position:absolute;
+	bottom:80px;
+	left:50%;
+	margin-left:-37px;
+	z-index:100;
+}
+.banner .inner .spot li{
+	width:15px;
+	height:15px;
+	border-radius:50%;
+	background:#fff;
+	float:left;
+	margin-left:10px;
+	cursor:pointer;
+}
+.banner .inner .spot .active{
+	background:#ff0000;
+}
+/*头部结束*/
+/*内容开始*/
+.about{
+	width:100%;
+	height:781px;
+	position:relative;
+	background:url(../images/c_02.jpg) center no-repeat;
+}
+.about .img{
+	width:100%;
+	height:181px;
+	background:url(../images/c_01.png) center no-repeat;
+	position:absolute;
+	top:-181px;
+	left:0;
+	z-index:20;
+}
+.about .content{
+	width:1200px;
+	margin:0 auto;
+}
+.title .top{
+	background:url(../images/c_03.png) center bottom no-repeat;
+	width:332px;
+	height:60px;
+	margin:0 auto;
+	text-align:center;
+	font-size:36px;
+	color:#000;
+}
+.title .p{
+	margin:0 auto;
+	height:30px;
+	line-height:30px;
+	color:#fff;
+	text-align:center;
+}
+.title h2{
+	margin:0 auto;
+	font-size:26px;
+	color:#fff;
+	text-align:center;
+	font-weight:normal;
+}
+.title .line{
+	width:57px;
+	height:3px;
+	background:#000;
+	margin:0 auto;
+	margin-top:10px;
+}
+.about .content .text{
+	width:938px;
+	height:258px;
+	margin:50px auto 90px;
+	font-size:16px;
+	color:#fff;
+	text-indent:32px;
+	line-height:2;
+	transition:all 1s;
+}
+.about .content .text:hover{
+	transform:scale(1.1);
+}
+.more{
+	display:block;
+	width:192px;
+	height:50px;
+	margin:0 auto;
+	text-align:center;
+	background:url(../images/more.png) center no-repeat;
+	position:relative;
+}
+.more span{
+	position:absolute;
+	top:33px;
+	left:48px;
+	color:#fff;
+	font-size:16px;
+	transition:all 1s;
+}
+.more span:hover{
+	transform:rotate(360deg);
+}
+.show{
+	width:100%;
+	height:830px;
+	background:url(../images/s_01.jpg) center no-repeat;
+}
+.show .show-area{
+	width:1200px;
+	margin:0 auto;
+}
+.title .red1{
+	color:#ff0000;
+}
+.title .red2{
+	background:#ff0000;
+}
+.show .show-area .show-list{
+	width:100%;
+	margin:55px 0 15px;
+}
+.show .show-area .show-list:after{
+	content:"";
+	display:block;
+	clear:both;
+}
+.show .show-area .show-list li{
+	float:left;
+	margin-right:27px;
+	cursor:pointer;
+}
+.show .show-area .show-list li a{
+	display:block;
+}
+.show .show-area .show-list li a img{
+	width:272px;
+	height:204px;
+	border:3px solid #333;
+	transition:all .5s;
+}
+.show .show-area .show-list li p{
+	width:100%;
+	height:55px;
+	line-height:40px;
+	color:#fff;
+	font-size:16px;
+	text-align:center;
+	transition:all .5s;
+}
+.show .show-area .show-list li:hover img{
+	transform:scale(1.1);
+	border-color:#ff0000;
+}
+.show .show-area .show-list li:hover p{
+	color:#ff0000;
+}
+.more2{
+	display:block;
+	width:192px;
+	height:50px;
+	margin:0 auto;
+	text-align:center;
+	background:url(../images/more1.png) center no-repeat;
+	position:relative;
+}
+.more2 span{
+	position:absolute;
+	top:33px;
+	left:48px;
+	color:#ff0000;
+	font-size:16px;
+	transition:all 1s;
+}
+.more2 span:hover{
+	transform:rotate(360deg);
+}
+.news{
+	width:100%;
+	height:936px;
+	background:url(../images/n_01.jpg) center no-repeat;
+}
+.news .news-area{
+	width:1200px;
+	margin:0 auto;
+	padding-top:139px;
+}
+.news .news-area .news-content{
+	width:622px;
+	margin-left:33px;
+}
+.news .news-area .news-content .news-list li{
+	width:100%;
+	margin-top:34px;
+}
+.news .news-area .news-content .news-list li a{
+	display:block;
+	width:100%;
+	color:#fff;
+}
+.news .news-area .news-content .news-list li a .title{
+	font-size:16px;
+	line-height:28px;
+}
+.news .news-area .news-content .news-list li a .title:hover{
+	color:#000;
+}
+.news .news-area .news-content .news-list li a .text{
+	font-size:14px;
+	line-height:18px;
+}
+.case{
+	background:url(../images/case.jpg) center top no-repeat;
+}
+/*内容结束*/
+/*底部开始*/
+.foot{
+	width:100%;
+	height:383px;
+	background:url(../images/f_01.jpg) center no-repeat;
+	margin-top:-57px;
+}
+.foot .foot-area{
+	width:1200px;
+	margin:0 auto;
+	padding-top:120px;
+}
+.foot .foot-area .information{
+	width:100%;
+	text-align:center;
+	color:#fff;
+	font-size:16px;
+}
+.foot2{
+	width:100%;
+	height:179px;
+	background:url(../images/f_02.jpg) center no-repeat;
+	position:relative;
+}
+.foot2 .to-top{
+	width:232px;
+	height:184px;
+	background:url(../images/totop.png) center no-repeat;
+	position:absolute;
+	left:50%;
+	bottom:78px;
+	margin-left:-116px;
+	cursor:pointer;
+	transition:all .5s;
+}
+.foot2 .to-top:hover{
+	transform:scale(1.1);
+}
+.foot2 .text{
+	width:1200px;
+	margin:0 auto;
+}
+.foot2 p{
+	width:100%;
+	text-align:center;
+	color:#333;
+	font-size:12px;
+	line-height:1.5;
+}
+/*底部结束*/

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		html,body{
+			width:100%;
+			height:100%;
+			margin:0;
+			padding:0;
+			font-family:"Microsoft Yahei";
+		}
+		ul,p,h1,h2,h3,h4,h5,h6{
+			list-style:none;
+			padding:0;
+			margin:0;
+		}
+		.box{
+			width:1000px;
+			height:800px;
+			margin:0 auto;
+			background:linear-gradient(#146DBF 50%,#3380B8 100%);
+			position:relative;
+		}
+		.top{
+			width:300px;
+			height:150px;
+		}
+		#province,#city{
+			border:0;
+			width:147px;
+			height:40px;
+			background:#146DBF;
+			font-size:20px;
+			color:#fff;
+			text-indent:50px;
+			outline:none;
+		}
+		.date,.week{
+			width:150px;
+			height:30px;
+			background:#146DBF;
+			font-size:16px;
+			line-height:30px;
+			text-align:center;
+			color:#fff;
+			float:left;
+			margin-top:5px;
+		}
+		.quality{
+			width:100%;
+			height:70px;
+			float:left;
+			margin-top:5px;
+			line-height:70px;
+			text-indent:30px;
+			font-size:24px;
+			color:#fff;
+			position:relative;
+		}
+		.quality span{
+			display:block;
+			width:120px;
+			height:40px;
+			position:absolute;
+			top:15px;
+			right:20px;
+			color:#fff;
+			font-size:26px;
+			line-height:40px;
+			text-align:center;
+			text-indent:0;
+		}
+		.middle{
+			width:100%;
+			height:300px;
+		}
+		.middle ul{
+			width:100%;
+			height:100%;
+			margin-top:5px;
+			padding:0;
+		}
+		.middle ul .first{
+			width:399px;
+			height:100%;
+		}
+		.middle ul li{
+			width:199px;
+			height:100%;
+			border-right:1px solid rgba(255,255,255,.3);
+			float:left;
+		}
+		.middle ul .first .img{
+			width:200px;
+			height:100px;
+			margin:10px auto;
+			text-align:center;
+		}
+		.middle ul .first .img img{
+			width:100px;
+			height:100px;
+		}
+		.middle ul .first .temp{
+			width:300px;
+			height:70px;
+			margin-top:5px;
+			padding-left:100px;
+		}
+		.middle ul .first .temp .left,.right{
+			width:100px;
+			height:80px;
+			float:left;
+			font-size:66px;
+			color:#fff;
+			line-height:80px;
+			text-align:right;
+			font-weight:bold;
+		}
+		.middle ul .first .temp .s1{
+			display:block;
+			width:50px;
+			height:40px;
+			font-size:26px;
+			line-height:40px;
+			text-align:left;
+			font-weight:normal;
+		}
+		.middle ul li .weather,.wind,.tempnum{
+			width:100%;
+			height:25px;
+			margin-top:10px;
+			font-size:22px;
+			color:#fff;
+			text-align:center;
+			line-height:25px;
+			margin-bottom:3px;
+		}
+		.middle ul .item h3{
+			width:100%;
+			height:40px;
+			line-height:40px;
+			margin:0 0 5px;
+			font-size:22px;
+			color:#fff;
+			text-align:center;
+			font-weight:normal;
+		}
+		.middle ul .item p{
+			width:100%;
+			height:30px;
+			margin:5px 0;
+			font-size:22px;
+			color:rgba(255,255,255,.4);
+			text-align:center;
+		}
+		.middle ul .item img{
+			display:block;
+			width:60px;
+			height:60px;
+			color:#fff;
+			margin:10px auto;
+		}
+		.bottom{
+			width:910px;
+			height:300px;
+			margin-top:15px;
+			padding:0 45px;
+		}
+		.bottom ul{
+			width:100%;
+			height:50px;
+			border:1px solid rgba(255,255,255,.4);
+		}
+		.bottom ul li{
+			width:226px;
+			height:50px;
+			border-right:1px solid rgba(255,255,255,.4);
+			float:left;
+			line-height:50px;
+			text-align:center;
+			color:#fff;
+			font-size:22px;
+			cursor:pointer;
+		}
+		.text-box{
+			width:100%;
+			height:250px;
+			border:1px solid rgba(255,255,255,.4);
+			border-top:0;
+			position:relative;
+		}
+		.text-box .inner{
+			width:100%;
+			height:250px;
+			position:absolute;
+			top:0;
+			left:0;
+			padding:15px;
+			box-sizing:border-box;
+			background:#3380B8;
+			/*display:none;*/
+		}
+		.text-box .active{
+			z-index:2;
+		}
+		.bottom ul li:hover{
+			background:rgba(255,255,255,.3)
+		}
+		.text-box .inner h1{
+			width:100%;
+			height:70px;
+			font-size:30px;
+			color:#fff;
+			text-align:left;
+		}
+		.text-box .inner p{
+			width:100%;
+			height:180px;
+			font-size:22px;
+			color:#fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="top">
+			<select name="province" id="province"></select>
+			<select name="city" id="city"></select>
+			<div class="date"></div>
+			<div class="week"></div>
+			<div class="quality">空气质量：<span></span></div>
+		</div>
+		<div class="middle">
+			<ul>
+				<li class="first">
+					<div class="img"><img src="" alt=""></div>
+					<div class="temp">
+						<div class="left"></div>
+						<div class="right">
+							<span class="s1"></span>
+						</div>
+					</div>
+					<div class="tempnum"></div>
+					<div class="weather"></div>
+					<div class="wind"></div>
+				</li>
+				<li class="second item">
+					<h3></h3>
+					<p></p>
+					<img src="" alt="">
+					<div class="tempnum"></div>
+					<div class="weather"></div>
+					<div class="wind"></div>
+				</li>
+				<li class="third item">
+					<h3></h3>
+					<p></p>
+					<img src="" alt="">
+					<div class="tempnum"></div>
+					<div class="weather"></div>
+					<div class="wind"></div>
+				</li>
+				<li style="border:0" class="four item">
+					<h3></h3>
+					<p></p>
+					<img src="" alt="">
+					<div class="tempnum"></div>
+					<div class="weather"></div>
+					<div class="wind"></div>
+				</li>
+			</ul>
+		</div>
+		<div class="bottom">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li style="border:0"></li>
+			</ul>
+			<div class="text-box">
+				<div class="active inner" style="z-index:1">
+					<h1></h1>
+					<p></p>
+				</div>
+				<div class="inner">
+					<h1></h1>
+					<p></p>
+				</div>
+				<div class="inner">
+					<h1></h1>
+					<p></p>
+				</div>
+				<div class="inner">
+					<h1></h1>
+					<p></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+	<script src="jquery1.11.3.js"></script>
+	<script>
+		$.getScript("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js",function(){
+                var city=remote_ip_info.city;
+                var province=remote_ip_info.province;
+            });
+
+
+		var provinces = [];
+		var citys = [];
+		var data = [];
+// 筛选省
+		$.ajax({
+			url:"http://api.jisuapi.com/weather/city",
+			data:{appkey:"818145c2b76ee09a"},
+			dataType:"jsonp",
+			success:function(r){
+				// console.log(r);
+				data=r.result;
+				provinces=$.grep(data,function(value,index){
+					if(value.parentid==="0"){
+						return true;
+					}
+				});
+				console.log(provinces);
+				$.each(provinces,function(index,value){
+					$("<option>").html(value.city).val(value.cityid).appendTo("#province");
+				});
+			}
+		});
+// 筛选市
+		$("#province").on("change blur",function(){
+			var provinceValue = $(this).val();
+			citys=$.grep(data,function(value,index){
+				if(value.parentid===provinceValue){
+					return true;
+				}
+			})
+			// console.log(citys);
+			$("#city").empty();
+			$.each(citys,function(index,value){
+				$("<option>").html(value.city).val(value.cityid).appendTo("#city");
+			})
+		});
+// 获取天气
+		$("#city").on("change blur",function(){
+			var cityValue = $(this).val();
+			$.ajax({
+				url:"http://api.jisuapi.com/weather/query",
+				data:{appkey:"818145c2b76ee09a",cityid:cityValue},
+				dataType:"jsonp",
+				success:function(r){
+					console.log(r);
+					$(".date").html(r.result.daily[0].date);
+					$(".week").html(r.result.daily[0].week);
+					$(".item").each(function(index,value){
+						$(value).children("h3").html(r.result.daily[index+1].week);
+						$(value).children("p").html(r.result.daily[index+1].date);
+						$(value).children("img").attr("src","天气图标/weathercn02/"+r.result.daily[index+1].day.img+".png");
+						$(value).children(".weather").html(r.result.daily[index+1].day.weather);
+						$(value).children(".wind").html(r.result.daily[index+1].day.windpower);
+						$(value).children(".tempnum").html(r.result.daily[index+1].night.templow+"~"+r.result.daily[index+1].day.temphigh+"°C");
+					});
+					$(".quality span").html(r.result.aqi.quality);
+					$(".first .img img").attr("src","天气图标/weathercn02/"+r.result.img+".png");
+					$(".temp .left").html(r.result.temp);
+					$(".temp .right .s1").html("°C");
+					$(".first .weather").html(r.result.weather);
+					$(".first .wind").html(r.result.winddirect);
+					$(".first .tempnum").html(r.result.templow+"~"+r.result.temphigh+"°C");
+					
+					$(".bottom ul li").each(function(index,value){
+						$(value).html(r.result.index[index].iname);
+					});
+					$(".text-box .inner").each(function(index,value){
+						$(value).children("h1").html(r.result.index[index].ivalue);
+						$(value).children("p").html(r.result.index[index].detail);
+					})
+				}
+			})
+		})
+	</script>
+	<script>
+		$(".bottom ul li").each(function(index,value){
+			var box = $(".text-box .inner");
+			$(value).mouseover(function(){
+				$(box).filter(".active").removeClass("active").end().eq(index).addClass("active");
+			});
+			
+		})
+	</script>
+</body>
+</html>

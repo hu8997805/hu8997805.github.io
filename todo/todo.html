@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bq.css">
+</head>
+<body>
+    <section class="leftbar">
+        <ul>
+            <h3>TODOLIST</h3>
+            <li class="check-wait">查看待办事项</li>
+            <li class="check-done">查看已完成事项</li>
+        </ul>
+    </section>
+    <div class="main">
+        <div class="container">
+            <div class="close"><i class="icon">&#xe624;</i></div>
+            <div class="add">
+                <h3>添加新的事项</h3>
+                <div class="area">
+                    <textarea name="" id="text" cols="30" rows="10"></textarea>
+                    <div class="num"><span>0</span>/500</div>
+                </div>
+                <div>
+                    <input type="button" id="submit" value="提交">
+                </div>
+            </div>
+            <div class="wait item">
+                <h3>未完成事项<input type="button" value="添加+" id="addto">
+                </h3>
+                <hr>
+                <ul>
+                </ul>
+                <hr>
+                <div class="move-done">
+                    <input type="button" value="已完成" id="move" class="btn-all">
+                </div>
+            </div>
+            <div class="done item">
+                <h3>已完成</h3>
+                <hr>
+                <ul>
+                </ul>
+                <hr>
+                <div class="move-done">
+                    <input type="button" value="清除" id="clear" class="btn-all">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery1.11.3.js"></script>
+    <script src="js/bq.js"></script>
+</body>
+</html>
