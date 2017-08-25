@@ -2,11 +2,11 @@
 //文本内容
 $("#text").on("keydown keyup",function(){
     var l=$(this).val().length;
-    if(l>40){
-        l=40;
+    if(l>100){
+        l=100;
         $(this).val(function(i,val){
             alert("文字已超出")
-            return val.slice(0,40);
+            return val.slice(0,100);
         })
     }
     $(".notic span:first-child").text(function(){
