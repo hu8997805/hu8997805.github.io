@@ -44,6 +44,9 @@
                 textShadowBlur:0,
                 opacity: 1
               }, 500 );
+          var color=["#0033CC","#FF66FF","#FF3300","#CC33FF","#CC6600","#CCFF33"];
+			var randomColor = Math.floor(Math.random()*6);
+			$(".rotate").css({"color":color[randomColor]})
             });
           break;
           
